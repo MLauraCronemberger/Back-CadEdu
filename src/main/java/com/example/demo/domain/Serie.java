@@ -1,12 +1,30 @@
 package com.example.demo.domain;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
+
+@Entity
+@Table(name="informacoes_series")
 public class Serie {
 	
+	@Id
+	@GeneratedValue(strategy= GenerationType.IDENTITY)
+	private Long id;
 	private int serie;
 	private String nivelEnsino;
 	private String turma;
 	private String turno;
 	
+	
+	public Long getId() {
+		return id;
+	}
+	public void setId(Long id) {
+		this.id = id;
+	}
 	public int getSerie() {
 		return serie;
 	}
@@ -31,14 +49,16 @@ public class Serie {
 	public void setTurno(String turno) {
 		this.turno = turno;
 	}
-	
-	public Serie(int serie, String nivelEnsino, String turma, String turno) {
+	public Serie(Long id, int serie, String nivelEnsino, String turma, String turno) {
 		super();
+		this.id = id;
 		this.serie = serie;
 		this.nivelEnsino = nivelEnsino;
 		this.turma = turma;
 		this.turno = turno;
 	}
+	
+	
 	
 	
 

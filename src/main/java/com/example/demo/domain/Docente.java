@@ -1,14 +1,39 @@
 package com.example.demo.domain;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.OneToOne;
+import jakarta.persistence.Table;
+
+@Entity
+@Table(name="informacoes_docentes")
 public class Docente extends Pessoa {
 	
+	@Id
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	private Long id;
 	private String tel;
 	private String email;
 	private String cargo;
+	
+	@OneToOne
+	@JoinColumn(name="disciplina")
 	private Disciplina disc;
+	
+//	falta o relacionamento manytomany, que ainda vou estudar um pouco antes de fazer
 	private Serie serie;
 	private Serie turno;
 	
+	
+	public Long getId() {
+		return id;
+	}
+	public void setId(Long id) {
+		this.id = id;
+	}
 	public String getTel() {
 		return tel;
 	}
@@ -47,9 +72,10 @@ public class Docente extends Pessoa {
 	}
 	
 	
-	public Docente(String nome, String cpf, String datnasc, String tel, String email, String cargo, Disciplina disc,
-			Serie serie, Serie turno) {
+	public Docente(String nome, String cpf, String datnasc, Long id, String tel, String email, String cargo,
+			Disciplina disc, Serie serie, Serie turno) {
 		super(nome, cpf, datnasc);
+		this.id = id;
 		this.tel = tel;
 		this.email = email;
 		this.cargo = cargo;
@@ -57,7 +83,6 @@ public class Docente extends Pessoa {
 		this.serie = serie;
 		this.turno = turno;
 	}
-	
 	
 
 }
