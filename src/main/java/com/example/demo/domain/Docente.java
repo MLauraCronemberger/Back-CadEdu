@@ -1,10 +1,15 @@
 package com.example.demo.domain;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
+import jakarta.persistence.JoinTable;
+import jakarta.persistence.ManyToMany;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 
@@ -23,9 +28,13 @@ public class Docente extends Pessoa {
 	@JoinColumn(name="disciplina")
 	private Disciplina disc;
 	
-//	falta o relacionamento manytomany, que ainda vou estudar um pouco antes de fazer
-	private Serie serie;
-	private Serie turno;
+	@ManyToMany
+	@JoinTable(
+			name="docentes_serie",
+			joinColumns= @JoinColumn(name="docente_id"),
+			inverseJoinColumns = @JoinColumn(name = "serie_id")
+			)
+	private List<Serie> series = new ArrayList<>();
 	
 	
 	public Long getId() {
@@ -58,30 +67,16 @@ public class Docente extends Pessoa {
 	public void setDisc(Disciplina disc) {
 		this.disc = disc;
 	}
-	public Serie getSerie() {
-		return serie;
-	}
-	public void setSerie(Serie serie) {
-		this.serie = serie;
-	}
-	public Serie getTurno() {
-		return turno;
-	}
-	public void setTurno(Serie turno) {
-		this.turno = turno;
-	}
-	
+
 	
 	public Docente(String nome, String cpf, String datnasc, Long id, String tel, String email, String cargo,
-			Disciplina disc, Serie serie, Serie turno) {
+			Disciplina disc) {
 		super(nome, cpf, datnasc);
 		this.id = id;
 		this.tel = tel;
 		this.email = email;
 		this.cargo = cargo;
 		this.disc = disc;
-		this.serie = serie;
-		this.turno = turno;
 	}
 	
 
