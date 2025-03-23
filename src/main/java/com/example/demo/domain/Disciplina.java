@@ -49,6 +49,10 @@ public class Disciplina {
 		this.serie = serie;
 	}
 	
+	public Disciplina() {
+		super();
+	}
+	
 	public Disciplina(Long id, String disc, String ch, Serie serie) {
 		super();
 		this.id = id;

@@ -27,6 +27,11 @@ public abstract class Pessoa {
 	public void setDatnasc(String datnasc) {
 		this.datnasc = datnasc;
 	}
+	
+	public Pessoa() {
+		
+	}
+	
 	public Pessoa(String nome, String cpf, String datnasc) {
 		super();
 		this.nome = nome;

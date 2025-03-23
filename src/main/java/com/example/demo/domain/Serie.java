@@ -55,6 +55,12 @@ public class Serie {
 	public void setTurno(String turno) {
 		this.turno = turno;
 	}
+	
+	public Serie() {
+		super();
+	}
+	
+	
 	public Serie(Long id, int serie, String nivelEnsino, String turma, String turno) {
 		super();
 		this.id = id;

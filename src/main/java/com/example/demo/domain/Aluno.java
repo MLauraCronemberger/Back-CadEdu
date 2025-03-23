@@ -57,6 +57,12 @@ public class Aluno extends Pessoa {
 		this.infoserie = infoserie;
 	}
 	
+	
+	
+	public Aluno() {
+	
+	}
+	
 	public Aluno(String nome, String cpf, String datnasc, Long id, String responsavel, String foto, String nivelEnsino,
 			Serie infoserie) {
 		super(nome, cpf, datnasc);

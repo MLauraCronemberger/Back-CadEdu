@@ -25,7 +25,7 @@ public class Docente extends Pessoa {
 	private String cargo;
 	
 	@OneToOne
-	@JoinColumn(name="disciplina")
+	@JoinColumn(name="id_disciplina")
 	private Disciplina disc;
 	
 	@ManyToMany
@@ -67,7 +67,11 @@ public class Docente extends Pessoa {
 	public void setDisc(Disciplina disc) {
 		this.disc = disc;
 	}
+	
 
+	
+	public Docente(){
+	}
 	
 	public Docente(String nome, String cpf, String datnasc, Long id, String tel, String email, String cargo,
 			Disciplina disc) {
