@@ -2,6 +2,7 @@ package com.example.demo.domain;
 
 import jakarta.persistence.MappedSuperclass;
 
+
 @MappedSuperclass
 public abstract class Pessoa {
 	

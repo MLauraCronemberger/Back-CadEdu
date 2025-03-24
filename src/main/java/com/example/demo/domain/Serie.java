@@ -2,21 +2,21 @@ package com.example.demo.domain;
 
 import java.util.ArrayList;
 import java.util.List;
-
+//
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.ManyToMany;
-import jakarta.persistence.Table;
+
 
 @Entity
-@Table(name="informacoes_series")
 public class Serie {
 	
 	@Id
 	@GeneratedValue(strategy= GenerationType.IDENTITY)
 	private Long id;
+	
 	private int serie;
 	private String nivelEnsino;
 	private String turma;
