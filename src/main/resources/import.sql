@@ -1,4 +1,4 @@
--- import.sql
+ -- import.sql
 INSERT INTO informacoes_series (serie, id, nivel_ensino, turma, turno) VALUES
 (1, 1, 'Ensino Fundamental', 'A', 'Manhã'),
 (3, 2, 'Ensino Médio', 'B', 'Tarde'),
