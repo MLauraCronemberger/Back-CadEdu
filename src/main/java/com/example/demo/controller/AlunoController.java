@@ -4,16 +4,22 @@ package com.example.demo.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.demo.domain.Aluno;
+import com.example.demo.domain.Serie;
 import com.example.demo.repository.AlunoRepository;
+
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 
 
 @RestController
@@ -42,20 +48,30 @@ public class AlunoController {
 		return aluno;
 	}
 	
-	@DeleteMapping(value="deletar-{id}")
+	@DeleteMapping(value="deletar/{id}")
 	public String deleteById(@PathVariable Long id) {
 		repository.deleteById(id);
 		return "Aluno deletado";
 		
 	}
 	
-
-	
-	
-	
-	
-
+	@PutMapping(value="editar/{id}")
+	public ResponseEntity<Aluno> update(@PathVariable Long id, @RequestBody Aluno editarAluno){
+		Aluno alunoEditado = repository.findById(id).get();
 		
-				
+		alunoEditado.setNome(editarAluno.getNome());
+		alunoEditado.setCpf(editarAluno.getCpf());
+		alunoEditado.setDatnasc(editarAluno.getDatnasc());
+		alunoEditado.setResponsavel(editarAluno.getResponsavel());
+		alunoEditado.setFoto(editarAluno.getFoto());
+		alunoEditado.setinfoserie(editarAluno.getinfoserie());
+		
+		repository.save(alunoEditado);
+		
+		return ResponseEntity.ok(alunoEditado);
+		
 	
+	}
+	
+
 }
