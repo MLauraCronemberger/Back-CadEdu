@@ -24,7 +24,7 @@ public class Docente extends Pessoa {
 	
 	@OneToOne
 	@JoinColumn(name="id_disciplina")
-	private Disciplina disc;
+	private Disciplina disciplina;
 	
 	@ManyToMany
 	@JoinTable(
@@ -59,11 +59,11 @@ public class Docente extends Pessoa {
 	public void setCargo(String cargo) {
 		this.cargo = cargo;
 	}
-	public Disciplina getDisc() {
-		return disc;
+	public Disciplina getDisciplina() {
+		return disciplina;
 	}
-	public void setDisc(Disciplina disc) {
-		this.disc = disc;
+	public void setDisc(Disciplina disciplina) {
+		this.disciplina = disciplina;
 	}
 	
 
@@ -72,13 +72,13 @@ public class Docente extends Pessoa {
 	}
 	
 	public Docente(String nome, String cpf, String datnasc, Long id, String tel, String email, String cargo,
-			Disciplina disc) {
+			Disciplina disciplina) {
 		super(nome, cpf, datnasc);
 		this.id = id;
 		this.tel = tel;
 		this.email = email;
 		this.cargo = cargo;
-		this.disc = disc;
+		this.disciplina = disciplina;
 	}
 	
 
