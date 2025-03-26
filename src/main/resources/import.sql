@@ -23,3 +23,18 @@ INSERT INTO docentes_serie (docente_id, serie_id) VALUES
 (1, 1),  
 (2, 2), 
 (3, 3);
+
+  {
+    "serie": 1,
+    "nivelEnsino": "Ensino Fundamental",
+    "turma": "C",
+    "turno": "Manhã"
+  }
+  
+  {
+  "disc": "Matemática",
+  "ch": 80,
+  "serie": { "id": 2 }
+}
+  
+  
