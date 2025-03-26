@@ -3,6 +3,7 @@ package com.example.demo.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -48,20 +49,30 @@ public class SerieController {
 		
 	}
 	
-	@PutMapping(value="/editar-{id}")
-	public Serie update(@PathVariable Long id) {
-		Serie serie = repository.findById(id).get();
-		serie.setNivelEnsino("nilvee");
-		serie.setTurma("111");
+	@PutMapping(value="editar-{id}")
+	public ResponseEntity<Serie> update(@PathVariable Long id, @RequestBody Serie serieEditada){
+		Serie editarSerie= repository.findById(id).get();
+		editarSerie.setSerie(serieEditada.getSerie());
+		editarSerie.setNivelEnsino(serieEditada.getNivelEnsino());
+		editarSerie.setTurma(serieEditada.getTurma());
+		editarSerie.setTurno(serieEditada.getTurno());
 		
-		repository.save(serie);
+		repository.save(editarSerie);
 		
-		return serie;
+		return ResponseEntity.ok(editarSerie);
 		
 	}
-
 	
-	
+//	@PutMapping(value="/editar-{id}")
+//	public Serie update(@PathVariable Long id) {
+//		Serie serie = repository.findById(id).get();
+//		serie.setNivelEnsino("nilvee");
+//		serie.setTurma("111");
+//		
+//		repository.save(serie);
+//		
+//		return serie;
+//	}
 	
 
 }
