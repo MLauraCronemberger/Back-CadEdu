@@ -31,7 +31,6 @@ public class DisciplinaController {
 	
 	@PostMapping(value= "/cadastrar")
 	public Disciplina insert(@RequestBody Disciplina disciplina) {
-		
 		Disciplina disciplinaCadastrada = repository.save(disciplina);
 		return disciplinaCadastrada;
 	}
