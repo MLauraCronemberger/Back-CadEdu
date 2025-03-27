@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -22,6 +23,7 @@ import jakarta.persistence.ManyToOne;
 
 @RestController
 @RequestMapping(value= "/disciplina")
+@CrossOrigin("*")
 public class DisciplinaController {
 	
 	@Autowired
@@ -45,14 +47,14 @@ public class DisciplinaController {
 		return disciplinas;
 	}
 	
-	@DeleteMapping(value="deletar-{id}")
+	@DeleteMapping(value="/deletar/{id}")
 	public String deleteById(@PathVariable Long id) {
 		repository.deleteById(id);
 		return "Disciplina Deletada";
 		
 	}
 	
-	@PutMapping(value="/editar-{id}")
+	@PutMapping(value="/editar/{id}")
 	public ResponseEntity<Disciplina> update(@PathVariable Long id, @RequestBody Disciplina editarDisciplina){
 		Disciplina disciplinaEditada = repository.findById(id).get();
 		

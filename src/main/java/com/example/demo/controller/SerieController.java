@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -11,6 +12,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.demo.domain.Serie;
@@ -18,16 +20,17 @@ import com.example.demo.repository.SerieRepository;
 
 @RestController
 @RequestMapping(value="/serie")
+@CrossOrigin("*")
 public class SerieController {
 	
 	@Autowired
 	private SerieRepository repository;
 	
-//	Para salvar várias serie de uma vez o meu requestbody deveria enviar uma lista do tipo serie
+//	Para salvar várias series de uma vez o meu requestbody deveria enviar uma lista do tipo serie
 	@PostMapping(value="/cadastrar")
-	public Serie insert(@RequestBody Serie serie) {
+	public ResponseEntity<Serie> insert(@RequestBody Serie serie) {
 		Serie serieCadastrada = repository.save(serie);
-		return serieCadastrada;
+		return ResponseEntity.ok(serieCadastrada);
 	}
 	
 	@GetMapping(value="/cadastradas")
@@ -42,14 +45,14 @@ public class SerieController {
 		return serie;
 	}
 	
-	@DeleteMapping(value="/deletar-{id}")
+	@DeleteMapping(value="/deletar/{id}")
 	public String deleteById(@PathVariable Long id) {
 		repository.deleteById(id);
 		return "Serie Deletada";
 		
 	}
 	
-	@PutMapping(value="editar-{id}")
+	@PutMapping(value="/editar/{id}")
 	public ResponseEntity<Serie> update(@PathVariable Long id, @RequestBody Serie serieEditada){
 		Serie editarSerie= repository.findById(id).get();
 		editarSerie.setSerie(serieEditada.getSerie());
