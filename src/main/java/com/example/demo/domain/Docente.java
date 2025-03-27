@@ -62,12 +62,16 @@ public class Docente extends Pessoa {
 	public Disciplina getDisciplina() {
 		return disciplina;
 	}
-	public void setDisc(Disciplina disciplina) {
+	public void setDisciplina(Disciplina disciplina) {
 		this.disciplina = disciplina;
 	}
 	
-
-	
+	public List<Serie> getSeries() {
+		return series;
+	}
+	public void setSeries(List<Serie> series) {
+		this.series = series;
+	}
 	public Docente(){
 	}
 	

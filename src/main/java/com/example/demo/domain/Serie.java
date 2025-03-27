@@ -56,6 +56,13 @@ public class Serie {
 		this.turno = turno;
 	}
 	
+	
+	public List<Docente> getDocentes() {
+		return docentes;
+	}
+	public void setDocentes(List<Docente> docentes) {
+		this.docentes = docentes;
+	}
 	public Serie() {
 		super();
 	}

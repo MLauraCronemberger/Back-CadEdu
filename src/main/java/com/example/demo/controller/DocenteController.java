@@ -65,7 +65,7 @@ public class DocenteController {
 		docenteEditado.setTel(editarDocente.getTel());
 		docenteEditado.setEmail(editarDocente.getEmail());
 		docenteEditado.setCargo(editarDocente.getCargo());
-		docenteEditado.setDisc(editarDocente.getDisciplina());
+		docenteEditado.setDisciplina(editarDocente.getDisciplina());
 		
 		repository.save(docenteEditado);
 		
