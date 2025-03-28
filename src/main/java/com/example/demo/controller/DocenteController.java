@@ -16,7 +16,9 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.example.demo.domain.Disciplina;
 import com.example.demo.domain.Docente;
+import com.example.demo.domain.dto.docente.DocenteResponseDTO;
 import com.example.demo.repository.DocenteRepository;
+import com.example.demo.service.mapper.DocenteMapper;
 
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.OneToOne;
@@ -28,6 +30,7 @@ public class DocenteController {
 	
 	@Autowired
 	private DocenteRepository repository;
+	private final DocenteMapper mapper = DocenteMapper.INSTANCE;
 	
 	@PostMapping(value="/cadastrar")
 	public Docente insert(@RequestBody Docente docente) {
@@ -37,15 +40,16 @@ public class DocenteController {
 	}
 	
 	@GetMapping(value="/cadastrados")
-	public List<Docente> findAll(){
+	public List<DocenteResponseDTO> findAll(){
 		List<Docente> docentes = repository.findAll();
-		return docentes;
+		
+		return mapper.paraListDTO(docentes);
 	}
 	
 	@GetMapping(value="/{id}")
-	public Docente findById(@PathVariable Long id) {
+	public DocenteResponseDTO findById(@PathVariable Long id) {
 		Docente docente = repository.findById(id).get();
-		return docente;
+		return mapper.paraDTO(docente);
 	}
 	
 	@DeleteMapping(value="/deletar/{id}")
