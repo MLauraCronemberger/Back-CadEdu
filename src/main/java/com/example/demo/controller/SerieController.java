@@ -16,7 +16,9 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.demo.domain.Serie;
+import com.example.demo.domain.dto.serie.SerieResponseDTO;
 import com.example.demo.repository.SerieRepository;
+import com.example.demo.service.mapper.SerieMapper;
 
 @RestController
 @RequestMapping(value="/serie")
@@ -25,6 +27,7 @@ public class SerieController {
 	
 	@Autowired
 	private SerieRepository repository;
+	private final SerieMapper mapper = SerieMapper.INSTANCE;
 	
 //	Para salvar várias series de uma vez o meu requestbody deveria enviar uma lista do tipo serie
 	@PostMapping(value="/cadastrar")
@@ -34,15 +37,16 @@ public class SerieController {
 	}
 	
 	@GetMapping(value="/cadastradas")
-	public List<Serie> findAll(){
+	public List<SerieResponseDTO> findAll(){
 		List<Serie> series = repository.findAll();
-		return series;
+	
+		return mapper.paraListDTO(series);
 	}
 	
 	@GetMapping(value="/{id}")
-	public Serie findById(@PathVariable Long id) {
+	public SerieResponseDTO findById(@PathVariable Long id) {
 		Serie serie = repository.findById(id).get();
-		return serie;
+		return mapper.paraDTO(serie);
 	}
 	
 	@DeleteMapping(value="/deletar/{id}")
