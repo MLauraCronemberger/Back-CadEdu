@@ -16,7 +16,9 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.example.demo.domain.Disciplina;
 import com.example.demo.domain.Serie;
+import com.example.demo.domain.dto.disciplina.DisciplinaResponseDTO;
 import com.example.demo.repository.DisciplinaRepository;
+import com.example.demo.service.mapper.DisciplinaMapper;
 
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
@@ -28,6 +30,7 @@ public class DisciplinaController {
 	
 	@Autowired
 	private DisciplinaRepository repository;
+	private final DisciplinaMapper mapper = DisciplinaMapper.INSTANCE;
 	
 	@PostMapping(value= "/cadastrar")
 	public Disciplina insert(@RequestBody Disciplina disciplina) {
@@ -36,9 +39,9 @@ public class DisciplinaController {
 	}
 	
 	@GetMapping(value="/cadastradas")
-	public List<Disciplina> findAll(){
+	public List<DisciplinaResponseDTO> findAll(){
 		List<Disciplina> disciplinas = repository.findAll();
-		return disciplinas;
+		return mapper.paraListDTO(disciplinas);
 	}
 	
 	@GetMapping(value="{id}")

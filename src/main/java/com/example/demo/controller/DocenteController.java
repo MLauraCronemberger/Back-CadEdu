@@ -35,6 +35,8 @@ public class DocenteController {
 	@PostMapping(value="/cadastrar")
 	public Docente insert(@RequestBody Docente docente) {
 		Docente novodocente = repository.save(docente);
+		novodocente.setSeries(null);
+		
 		return novodocente;
 		
 	}

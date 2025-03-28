@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.example.demo.domain.Serie;
 import com.example.demo.domain.dto.serie.SerieResponseDTO;
 import com.example.demo.repository.SerieRepository;
+import com.example.demo.service.impl.SerieServiceImpl;
 import com.example.demo.service.mapper.SerieMapper;
 
 @RestController
@@ -26,6 +27,7 @@ import com.example.demo.service.mapper.SerieMapper;
 public class SerieController {
 	
 	@Autowired
+	private SerieServiceImpl service;
 	private SerieRepository repository;
 	private final SerieMapper mapper = SerieMapper.INSTANCE;
 	
@@ -37,10 +39,9 @@ public class SerieController {
 	}
 	
 	@GetMapping(value="/cadastradas")
-	public List<SerieResponseDTO> findAll(){
-		List<Serie> series = repository.findAll();
-	
-		return mapper.paraListDTO(series);
+	public ResponseEntity<List<SerieResponseDTO>> findAll(){
+		return ResponseEntity.ok(service.findAll());
+		
 	}
 	
 	@GetMapping(value="/{id}")

@@ -1,10 +1,6 @@
 package com.example.demo.domain.dto.docente;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import com.example.demo.domain.Disciplina;
-import com.example.demo.domain.Serie;
+import com.example.demo.domain.dto.disciplina.DisciplinaResponseDTO;
 
 public class DocenteResponseDTO {
 	private String nome;
@@ -14,6 +10,7 @@ public class DocenteResponseDTO {
 	private String tel;
 	private String email;
 	private String cargo;
+	private DisciplinaResponseDTO disciplina;
 //	private Disciplina disciplina;
 	
 //	Quero que apareça tudo de serie, menos docentes
@@ -62,6 +59,14 @@ public class DocenteResponseDTO {
 	public void setCargo(String cargo) {
 		this.cargo = cargo;
 	}
+	public DisciplinaResponseDTO getDisciplina() {
+		return disciplina;
+	}
+	public void setDisciplina(DisciplinaResponseDTO disciplina) {
+		this.disciplina = disciplina;
+	}
+	
+	
 //	public Disciplina getDisciplina() {
 //		return disciplina;
 //	}
