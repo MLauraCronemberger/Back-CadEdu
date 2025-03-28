@@ -17,7 +17,9 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.example.demo.domain.Aluno;
 import com.example.demo.domain.Serie;
+import com.example.demo.domain.dto.aluno.AlunoResponseDTO;
 import com.example.demo.repository.AlunoRepository;
+import com.example.demo.service.mapper.AlunoMapper;
 
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
@@ -30,6 +32,7 @@ public class AlunoController {
 	
 	@Autowired
 	private AlunoRepository repository;
+	private final AlunoMapper mapper = AlunoMapper.INTANCE;
 	
 	@PostMapping(value="/cadastrar")
 	public Aluno insert (@RequestBody Aluno aluno) {
@@ -39,15 +42,15 @@ public class AlunoController {
 	}
 	
 	@GetMapping(value="/cadastrados")
-	public List<Aluno> findAll(){
+	public List<AlunoResponseDTO> findAll(){
 		List<Aluno> alunos = repository.findAll();
-		return alunos;
+		return mapper.paraListDTO(alunos);
 	}
 	
 	@GetMapping(value="/{id}")
-	public Aluno findById(@PathVariable Long id) {
+	public AlunoResponseDTO findById(@PathVariable Long id) {
 		Aluno aluno = repository.findById(id).get();
-		return aluno;
+		return mapper.paraDTO(aluno);
 	}
 	
 	@DeleteMapping(value="/deletar/{id}")
@@ -66,7 +69,7 @@ public class AlunoController {
 		alunoEditado.setDatnasc(editarAluno.getDatnasc());
 		alunoEditado.setResponsavel(editarAluno.getResponsavel());
 		alunoEditado.setFoto(editarAluno.getFoto());
-		alunoEditado.setinfoserie(editarAluno.getinfoserie());
+		alunoEditado.setserie(editarAluno.getserie());
 		
 		repository.save(alunoEditado);
 		

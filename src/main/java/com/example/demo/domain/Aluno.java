@@ -20,7 +20,7 @@ public class Aluno extends Pessoa {
 	
 	@ManyToOne
 	@JoinColumn(name="id_serie")
-	private Serie infoserie;
+	private Serie serie;
 	
 
 	public Long getId() {
@@ -43,11 +43,11 @@ public class Aluno extends Pessoa {
 		this.foto = foto;
 	}
 	
-	public Serie getinfoserie() {
-		return infoserie;
+	public Serie getserie() {
+		return serie;
 	}
-	public void setinfoserie(Serie infoserie) {
-		this.infoserie = infoserie;
+	public void setserie(Serie serie) {
+		this.serie = serie;
 	}
 	
 	
@@ -57,12 +57,12 @@ public class Aluno extends Pessoa {
 	}
 	
 	public Aluno(String nome, String cpf, String datnasc, Long id, String responsavel, String foto,
-			Serie infoserie) {
+			Serie serie) {
 		super(nome, cpf, datnasc);
 		this.id = id;
 		this.responsavel = responsavel;
 		this.foto = foto;
-		this.infoserie = infoserie;
+		this.serie = serie;
 	}
 
 

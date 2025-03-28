@@ -9,7 +9,7 @@ public class AlunoResponseDTO {
 	private Long id;
 	private String responsavel;
 	private String foto;
-	private SerieResponseDTO infoserie;
+	private SerieResponseDTO serie;
 	public String getNome() {
 		return nome;
 	}
@@ -47,10 +47,10 @@ public class AlunoResponseDTO {
 		this.foto = foto;
 	}
 	public SerieResponseDTO getSerie() {
-		return infoserie;
+		return serie;
 	}
 	public void setSerie(SerieResponseDTO serie) {
-		this.infoserie = serie;
+		this.serie = serie;
 	}
 	
 

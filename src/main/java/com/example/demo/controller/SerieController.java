@@ -33,10 +33,15 @@ public class SerieController {
 	
 //	Para salvar várias series de uma vez o meu requestbody deveria enviar uma lista do tipo serie
 	@PostMapping(value="/cadastrar")
-	public ResponseEntity<Serie> insert(@RequestBody Serie serie) {
-		Serie serieCadastrada = repository.save(serie);
-		return ResponseEntity.ok(serieCadastrada);
-	}
+	public ResponseEntity<SerieResponseDTO> insert(@RequestBody Serie serie) {
+		SerieResponseDTO serieCadastrada = service.create(serie);
+        return ResponseEntity.ok(serieCadastrada);
+    }
+//		Serie serieCadastrada = repository.save(serie);
+//		return ResponseEntity.ok(serieCadastrada);
+//	}
+	
+	
 	
 	@GetMapping(value="/cadastradas")
 	public ResponseEntity<List<SerieResponseDTO>> findAll(){
