@@ -27,6 +27,7 @@ public class SerieController {
 	private SerieServiceImpl service;
 	
 //	Para salvar várias series de uma vez o meu requestbody deveria enviar uma lista do tipo serie
+
 	@PostMapping(value="/cadastrar")
 	public ResponseEntity<SerieResponseDTO> insert(@RequestBody Serie serie) {
         return ResponseEntity.ok(service.create(serie));
