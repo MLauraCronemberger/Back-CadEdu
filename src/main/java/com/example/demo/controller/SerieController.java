@@ -28,8 +28,6 @@ public class SerieController {
 	
 	@Autowired
 	private SerieServiceImpl service;
-	private SerieRepository repository;
-	private final SerieMapper mapper = SerieMapper.INSTANCE;
 	
 //	Para salvar várias series de uma vez o meu requestbody deveria enviar uma lista do tipo serie
 	@PostMapping(value="/cadastrar")
@@ -37,11 +35,7 @@ public class SerieController {
 		SerieResponseDTO serieCadastrada = service.create(serie);
         return ResponseEntity.ok(serieCadastrada);
     }
-//		Serie serieCadastrada = repository.save(serie);
-//		return ResponseEntity.ok(serieCadastrada);
-//	}
-	
-	
+
 	
 	@GetMapping(value="/cadastradas")
 	public ResponseEntity<List<SerieResponseDTO>> findAll(){
@@ -51,41 +45,20 @@ public class SerieController {
 	
 	@GetMapping(value="/{id}")
 	public SerieResponseDTO findById(@PathVariable Long id) {
-		Serie serie = repository.findById(id).get();
-		return mapper.paraDTO(serie);
+		SerieResponseDTO serieCadastrada= service.findById(id);
+		return serieCadastrada;
 	}
 	
 	@DeleteMapping(value="/deletar/{id}")
 	public String deleteById(@PathVariable Long id) {
-		repository.deleteById(id);
-		return "Serie Deletada";
+		return service.deleteById(id);
 		
 	}
 	
 	@PutMapping(value="/editar/{id}")
-	public ResponseEntity<Serie> update(@PathVariable Long id, @RequestBody Serie serieEditada){
-		Serie editarSerie= repository.findById(id).get();
-		editarSerie.setSerie(serieEditada.getSerie());
-		editarSerie.setNivelEnsino(serieEditada.getNivelEnsino());
-		editarSerie.setTurma(serieEditada.getTurma());
-		editarSerie.setTurno(serieEditada.getTurno());
-		
-		repository.save(editarSerie);
-		
+	public ResponseEntity<SerieResponseDTO> update(@PathVariable Long id, @RequestBody Serie serieEditada){
+		SerieResponseDTO editarSerie = service.update(id, serieEditada);	
 		return ResponseEntity.ok(editarSerie);
-		
 	}
 	
-//	@PutMapping(value="/editar-{id}")
-//	public Serie update(@PathVariable Long id) {
-//		Serie serie = repository.findById(id).get();
-//		serie.setNivelEnsino("nilvee");
-//		serie.setTurma("111");
-//		
-//		repository.save(serie);
-//		
-//		return serie;
-//	}
-	
-
 }

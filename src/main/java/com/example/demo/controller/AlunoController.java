@@ -32,7 +32,7 @@ public class AlunoController {
 	
 	@Autowired
 	private AlunoRepository repository;
-	private final AlunoMapper mapper = AlunoMapper.INTANCE;
+	private final AlunoMapper mapper = AlunoMapper.INSTANCE;
 	
 	@PostMapping(value="/cadastrar")
 	public Aluno insert (@RequestBody Aluno aluno) {

@@ -12,7 +12,7 @@ import com.example.demo.domain.dto.aluno.AlunoResponseDTO;
 
 @Mapper(componentModel="spring")
 public interface AlunoMapper {
-	AlunoMapper INTANCE = Mappers.getMapper(AlunoMapper.class);
+	AlunoMapper INSTANCE = Mappers.getMapper(AlunoMapper.class);
 	
 	AlunoResponseDTO paraDTO (Aluno aluno);
 	
