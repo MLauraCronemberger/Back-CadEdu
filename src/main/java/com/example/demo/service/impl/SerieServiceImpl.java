@@ -3,7 +3,6 @@ package com.example.demo.service.impl;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.PathVariable;
 
@@ -46,16 +45,16 @@ public class SerieServiceImpl implements SerieService{
 	}
 	
 	@Override
-	public SerieResponseDTO update(@PathVariable Long id, Serie serieEditada) {
-		Serie editarSerie = repository.findById(id).get();
-		editarSerie.setSerie(serieEditada.getSerie());
-		editarSerie.setNivelEnsino(serieEditada.getNivelEnsino());
-		editarSerie.setTurma(serieEditada.getTurma());
-		editarSerie.setTurno(serieEditada.getTurno());
+	public SerieResponseDTO update(@PathVariable Long id, Serie editarSerie) {
+		Serie serieEditada = repository.findById(id).get();
+		serieEditada.setSerie(editarSerie.getSerie());
+		serieEditada.setNivelEnsino(editarSerie.getNivelEnsino());
+		serieEditada.setTurma(editarSerie.getTurma());
+		serieEditada.setTurno(editarSerie.getTurno());
 		
-		repository.save(editarSerie);
+		repository.save(serieEditada);
 		
-		return mapper.paraDTO(editarSerie);
+		return mapper.paraDTO(serieEditada);
 		
 	}
 

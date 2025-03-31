@@ -3,7 +3,6 @@ package com.example.demo.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -15,13 +14,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.demo.domain.Disciplina;
-import com.example.demo.domain.Serie;
 import com.example.demo.domain.dto.disciplina.DisciplinaResponseDTO;
-import com.example.demo.repository.DisciplinaRepository;
-import com.example.demo.service.mapper.DisciplinaMapper;
-
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
+import com.example.demo.service.DisciplinaService;
+
 
 @RestController
 @RequestMapping(value= "/disciplina")
@@ -29,45 +24,37 @@ import jakarta.persistence.ManyToOne;
 public class DisciplinaController {
 	
 	@Autowired
-	private DisciplinaRepository repository;
-	private final DisciplinaMapper mapper = DisciplinaMapper.INSTANCE;
+	private DisciplinaService service;
 	
 	@PostMapping(value= "/cadastrar")
-	public Disciplina insert(@RequestBody Disciplina disciplina) {
-		Disciplina disciplinaCadastrada = repository.save(disciplina);
+	public DisciplinaResponseDTO insert(@RequestBody Disciplina disciplina) {
+		DisciplinaResponseDTO disciplinaCadastrada = service.create(disciplina);
 		return disciplinaCadastrada;
 	}
 	
 	@GetMapping(value="/cadastradas")
 	public List<DisciplinaResponseDTO> findAll(){
-		List<Disciplina> disciplinas = repository.findAll();
-		return mapper.paraListDTO(disciplinas);
+		List<DisciplinaResponseDTO> disciplinas = service.findAll();
+		return disciplinas;
 	}
 	
+	
 	@GetMapping(value="{id}")
-	public Disciplina findById(@PathVariable Long id) {
-		Disciplina disciplinas = repository.findById(id).get();
+	public DisciplinaResponseDTO findById(@PathVariable Long id) {
+		DisciplinaResponseDTO disciplinas = service.findById(id);
 		return disciplinas;
 	}
 	
 	@DeleteMapping(value="/deletar/{id}")
 	public String deleteById(@PathVariable Long id) {
-		repository.deleteById(id);
-		return "Disciplina Deletada";
+		return service.deleteById(id);
 		
 	}
 	
 	@PutMapping(value="/editar/{id}")
-	public ResponseEntity<Disciplina> update(@PathVariable Long id, @RequestBody Disciplina editarDisciplina){
-		Disciplina disciplinaEditada = repository.findById(id).get();
-		
-		disciplinaEditada.setDisc(editarDisciplina.getDisc());
-		disciplinaEditada.setCh(editarDisciplina.getCh());
-		disciplinaEditada.setSerie(editarDisciplina.getSerie());
-		
-		repository.save(disciplinaEditada);
-		
-		return ResponseEntity.ok(disciplinaEditada);
+	public DisciplinaResponseDTO update(@PathVariable Long id, @RequestBody Disciplina editarDisciplina){
+		DisciplinaResponseDTO disciplinaEditada = service.update(id, editarDisciplina);
+		return disciplinaEditada;
 		
 	}
 }

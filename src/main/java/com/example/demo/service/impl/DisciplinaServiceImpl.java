@@ -1,0 +1,60 @@
+package com.example.demo.service.impl;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.PathVariable;
+
+import com.example.demo.domain.Disciplina;
+import com.example.demo.domain.dto.disciplina.DisciplinaResponseDTO;
+import com.example.demo.repository.DisciplinaRepository;
+import com.example.demo.service.DisciplinaService;
+import com.example.demo.service.mapper.DisciplinaMapper;
+
+@Service
+public class DisciplinaServiceImpl implements DisciplinaService{
+	
+	@Autowired
+	private DisciplinaRepository repository;
+	private final DisciplinaMapper mapper = DisciplinaMapper.INSTANCE;
+	
+	@Override
+	public DisciplinaResponseDTO create(Disciplina disciplina) {
+		Disciplina newDisciplina = repository.save(disciplina);
+		return mapper.paraDTO(newDisciplina);
+	}
+	
+	@Override
+	public List<DisciplinaResponseDTO> findAll() {
+		List<Disciplina> allDisciplinas = repository.findAll();
+		return mapper.paraListDTO(allDisciplinas);
+	}
+	
+	@Override
+	public DisciplinaResponseDTO findById(@PathVariable Long id) {
+		Disciplina disciplina = repository.findById(id).get();
+		return mapper.paraDTO(disciplina);
+	}
+	
+	@Override
+	public String deleteById(@PathVariable Long id) {
+		repository.deleteById(id);
+		return "Disciplina Deletada";
+	}
+	
+	@Override
+	public DisciplinaResponseDTO update(@PathVariable Long id, Disciplina editarDisciplina) {
+		Disciplina disciplinaEditada = repository.findById(id).get();
+		
+		disciplinaEditada.setDisc(editarDisciplina.getDisc());
+		disciplinaEditada.setCh(editarDisciplina.getCh());
+		disciplinaEditada.setSerie(editarDisciplina.getSerie());
+		
+		repository.save(disciplinaEditada);
+		
+		return mapper.paraDTO(disciplinaEditada);
+	}
+	
+
+}

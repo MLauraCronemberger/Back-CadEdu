@@ -8,8 +8,8 @@ import com.example.demo.domain.Serie;
 import com.example.demo.domain.dto.serie.SerieResponseDTO;
 
 public interface SerieService {
-	List<SerieResponseDTO> findAll ();
 	SerieResponseDTO create(Serie serie);
+	List<SerieResponseDTO> findAll ();
 	SerieResponseDTO findById(@PathVariable Long id);
 	String deleteById(@PathVariable Long id);
 	SerieResponseDTO update(@PathVariable Long id, Serie editarSerie);

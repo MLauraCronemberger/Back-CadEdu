@@ -12,14 +12,11 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.demo.domain.Serie;
 import com.example.demo.domain.dto.serie.SerieResponseDTO;
-import com.example.demo.repository.SerieRepository;
 import com.example.demo.service.impl.SerieServiceImpl;
-import com.example.demo.service.mapper.SerieMapper;
 
 @RestController
 @RequestMapping(value="/serie")
@@ -56,9 +53,9 @@ public class SerieController {
 	}
 	
 	@PutMapping(value="/editar/{id}")
-	public ResponseEntity<SerieResponseDTO> update(@PathVariable Long id, @RequestBody Serie serieEditada){
-		SerieResponseDTO editarSerie = service.update(id, serieEditada);	
-		return ResponseEntity.ok(editarSerie);
+	public ResponseEntity<SerieResponseDTO> update(@PathVariable Long id, @RequestBody Serie editarSerie){
+		SerieResponseDTO serieEditada = service.update(id, editarSerie);	
+		return ResponseEntity.ok(serieEditada);
 	}
 	
 }
