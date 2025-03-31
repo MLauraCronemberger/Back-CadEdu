@@ -14,14 +14,10 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.example.demo.domain.Disciplina;
 import com.example.demo.domain.Docente;
 import com.example.demo.domain.dto.docente.DocenteResponseDTO;
-import com.example.demo.repository.DocenteRepository;
-import com.example.demo.service.mapper.DocenteMapper;
+import com.example.demo.service.DocenteService;
 
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.OneToOne;
 
 @RestController
 @RequestMapping(value="/docente")
@@ -29,52 +25,37 @@ import jakarta.persistence.OneToOne;
 public class DocenteController {
 	
 	@Autowired
-	private DocenteRepository repository;
-	private final DocenteMapper mapper = DocenteMapper.INSTANCE;
+	private DocenteService service;
 	
 	@PostMapping(value="/cadastrar")
-	public Docente insert(@RequestBody Docente docente) {
-		Docente novodocente = repository.save(docente);
-		novodocente.setSeries(null);
-		
+	public DocenteResponseDTO insert(@RequestBody Docente docente) {
+		DocenteResponseDTO novodocente = service.create(docente);
 		return novodocente;
 		
 	}
 	
 	@GetMapping(value="/cadastrados")
 	public List<DocenteResponseDTO> findAll(){
-		List<Docente> docentes = repository.findAll();
+		List<DocenteResponseDTO> docentes = service.findAll();
 		
-		return mapper.paraListDTO(docentes);
+		return docentes;
 	}
 	
 	@GetMapping(value="/{id}")
 	public DocenteResponseDTO findById(@PathVariable Long id) {
-		Docente docente = repository.findById(id).get();
-		return mapper.paraDTO(docente);
+		DocenteResponseDTO docente = service.findById(id);
+		return docente;
 	}
 	
 	@DeleteMapping(value="/deletar/{id}")
 	public String deleteById(@PathVariable Long id) {
-		repository.deleteById(id);
-		return "Docente deletado";
+		return service.deleteById(id);
 		
 	}
 	
 	@PutMapping(value="/editar/{id}")
-	public ResponseEntity<Docente> update(@PathVariable Long id, @RequestBody Docente editarDocente){
-		Docente docenteEditado = repository.findById(id).get();
-		
-		docenteEditado.setNome(editarDocente.getNome());
-		docenteEditado.setCpf(editarDocente.getCpf());
-		docenteEditado.setDatnasc(editarDocente.getDatnasc());
-		docenteEditado.setTel(editarDocente.getTel());
-		docenteEditado.setEmail(editarDocente.getEmail());
-		docenteEditado.setCargo(editarDocente.getCargo());
-		docenteEditado.setDisciplina(editarDocente.getDisciplina());
-		
-		repository.save(docenteEditado);
-		
+	public ResponseEntity<DocenteResponseDTO> update(@PathVariable Long id, @RequestBody Docente editarDocente){
+		DocenteResponseDTO docenteEditado = service.update(id, editarDocente);
 		return ResponseEntity.ok(docenteEditado);		
 		
 	}
