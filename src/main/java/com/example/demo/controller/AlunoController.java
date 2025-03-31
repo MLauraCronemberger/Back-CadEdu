@@ -30,21 +30,18 @@ public class AlunoController {
 	
 	@PostMapping(value="/cadastrar")
 	public AlunoResponseDTO insert (@RequestBody Aluno aluno) {
-		AlunoResponseDTO alunocadastrado = service.create(aluno);
-		return alunocadastrado;
+		return service.create(aluno);
 		
 	}
 	
 	@GetMapping(value="/cadastrados")
 	public List<AlunoResponseDTO> findAll(){
-		List<AlunoResponseDTO> alunos = service.findAll();
-		return alunos;
+		return service.findAll();
 	}
 	
 	@GetMapping(value="/{id}")
 	public AlunoResponseDTO findById(@PathVariable Long id) {
-		AlunoResponseDTO aluno = service.findById(id);
-		return aluno;
+		return service.findById(id);
 	}
 	
 	@DeleteMapping(value="/deletar/{id}")
@@ -54,9 +51,7 @@ public class AlunoController {
 	
 	@PutMapping(value="/editar/{id}")
 	public ResponseEntity<AlunoResponseDTO> update(@PathVariable Long id, @RequestBody Aluno editarAluno){
-		AlunoResponseDTO alunoEditado = service.update(id, editarAluno);
-
-		return ResponseEntity.ok(alunoEditado);
+		return ResponseEntity.ok(service.update(id, editarAluno));
 	}
 	
 

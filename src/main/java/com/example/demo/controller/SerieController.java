@@ -29,8 +29,7 @@ public class SerieController {
 //	Para salvar várias series de uma vez o meu requestbody deveria enviar uma lista do tipo serie
 	@PostMapping(value="/cadastrar")
 	public ResponseEntity<SerieResponseDTO> insert(@RequestBody Serie serie) {
-		SerieResponseDTO serieCadastrada = service.create(serie);
-        return ResponseEntity.ok(serieCadastrada);
+        return ResponseEntity.ok(service.create(serie));
     }
 
 	
@@ -42,8 +41,7 @@ public class SerieController {
 	
 	@GetMapping(value="/{id}")
 	public SerieResponseDTO findById(@PathVariable Long id) {
-		SerieResponseDTO serieCadastrada= service.findById(id);
-		return serieCadastrada;
+		return service.findById(id);
 	}
 	
 	@DeleteMapping(value="/deletar/{id}")
@@ -54,8 +52,7 @@ public class SerieController {
 	
 	@PutMapping(value="/editar/{id}")
 	public ResponseEntity<SerieResponseDTO> update(@PathVariable Long id, @RequestBody Serie editarSerie){
-		SerieResponseDTO serieEditada = service.update(id, editarSerie);	
-		return ResponseEntity.ok(serieEditada);
+		return ResponseEntity.ok(service.update(id, editarSerie));
 	}
 	
 }

@@ -29,35 +29,27 @@ public class DocenteController {
 	
 	@PostMapping(value="/cadastrar")
 	public DocenteResponseDTO insert(@RequestBody Docente docente) {
-		DocenteResponseDTO novodocente = service.create(docente);
-		return novodocente;
-		
+		return service.create(docente);
 	}
 	
 	@GetMapping(value="/cadastrados")
 	public List<DocenteResponseDTO> findAll(){
-		List<DocenteResponseDTO> docentes = service.findAll();
-		
-		return docentes;
+		return service.findAll();
 	}
 	
 	@GetMapping(value="/{id}")
 	public DocenteResponseDTO findById(@PathVariable Long id) {
-		DocenteResponseDTO docente = service.findById(id);
-		return docente;
+		return service.findById(id);
 	}
 	
 	@DeleteMapping(value="/deletar/{id}")
 	public String deleteById(@PathVariable Long id) {
 		return service.deleteById(id);
-		
 	}
 	
 	@PutMapping(value="/editar/{id}")
 	public ResponseEntity<DocenteResponseDTO> update(@PathVariable Long id, @RequestBody Docente editarDocente){
-		DocenteResponseDTO docenteEditado = service.update(id, editarDocente);
-		return ResponseEntity.ok(docenteEditado);		
-		
+		return ResponseEntity.ok(service.update(id, editarDocente));		
 	}
 	
 }

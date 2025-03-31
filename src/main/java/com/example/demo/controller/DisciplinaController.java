@@ -28,21 +28,18 @@ public class DisciplinaController {
 	
 	@PostMapping(value= "/cadastrar")
 	public DisciplinaResponseDTO insert(@RequestBody Disciplina disciplina) {
-		DisciplinaResponseDTO disciplinaCadastrada = service.create(disciplina);
-		return disciplinaCadastrada;
+		return service.create(disciplina);
 	}
 	
 	@GetMapping(value="/cadastradas")
 	public List<DisciplinaResponseDTO> findAll(){
-		List<DisciplinaResponseDTO> disciplinas = service.findAll();
-		return disciplinas;
+		return service.findAll();
 	}
 	
 	
 	@GetMapping(value="{id}")
 	public DisciplinaResponseDTO findById(@PathVariable Long id) {
-		DisciplinaResponseDTO disciplinas = service.findById(id);
-		return disciplinas;
+		return service.findById(id);
 	}
 	
 	@DeleteMapping(value="/deletar/{id}")
@@ -53,8 +50,7 @@ public class DisciplinaController {
 	
 	@PutMapping(value="/editar/{id}")
 	public DisciplinaResponseDTO update(@PathVariable Long id, @RequestBody Disciplina editarDisciplina){
-		DisciplinaResponseDTO disciplinaEditada = service.update(id, editarDisciplina);
-		return disciplinaEditada;
+		return service.update(id, editarDisciplina);
 		
 	}
 }
