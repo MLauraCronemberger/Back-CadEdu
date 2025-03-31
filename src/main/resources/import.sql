@@ -28,7 +28,7 @@
       "datnasc": "2005-11-05",
       "responsavel": "Lucia Lima",
       "foto": "foto_amanda.jpg",
-      "infoserie": {"id": 8}
+      "serie": {"id": 8}
     }
     
     

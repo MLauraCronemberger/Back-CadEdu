@@ -16,13 +16,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.demo.domain.Aluno;
-import com.example.demo.domain.Serie;
 import com.example.demo.domain.dto.aluno.AlunoResponseDTO;
-import com.example.demo.repository.AlunoRepository;
-import com.example.demo.service.mapper.AlunoMapper;
-
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
+import com.example.demo.service.impl.AlunoServiceImpl;
 
 
 @RestController
@@ -31,51 +26,37 @@ import jakarta.persistence.ManyToOne;
 public class AlunoController {
 	
 	@Autowired
-	private AlunoRepository repository;
-	private final AlunoMapper mapper = AlunoMapper.INSTANCE;
+	private AlunoServiceImpl service;
 	
 	@PostMapping(value="/cadastrar")
-	public Aluno insert (@RequestBody Aluno aluno) {
-		Aluno alunocadastrado = repository.save(aluno);
+	public AlunoResponseDTO insert (@RequestBody Aluno aluno) {
+		AlunoResponseDTO alunocadastrado = service.create(aluno);
 		return alunocadastrado;
 		
 	}
 	
 	@GetMapping(value="/cadastrados")
 	public List<AlunoResponseDTO> findAll(){
-		List<Aluno> alunos = repository.findAll();
-		return mapper.paraListDTO(alunos);
+		List<AlunoResponseDTO> alunos = service.findAll();
+		return alunos;
 	}
 	
 	@GetMapping(value="/{id}")
 	public AlunoResponseDTO findById(@PathVariable Long id) {
-		Aluno aluno = repository.findById(id).get();
-		return mapper.paraDTO(aluno);
+		AlunoResponseDTO aluno = service.findById(id);
+		return aluno;
 	}
 	
 	@DeleteMapping(value="/deletar/{id}")
 	public String deleteById(@PathVariable Long id) {
-		repository.deleteById(id);
-		return "Aluno deletado";
-		
+		return service.deleteById(id);
 	}
 	
 	@PutMapping(value="/editar/{id}")
-	public ResponseEntity<Aluno> update(@PathVariable Long id, @RequestBody Aluno editarAluno){
-		Aluno alunoEditado = repository.findById(id).get();
-		
-		alunoEditado.setNome(editarAluno.getNome());
-		alunoEditado.setCpf(editarAluno.getCpf());
-		alunoEditado.setDatnasc(editarAluno.getDatnasc());
-		alunoEditado.setResponsavel(editarAluno.getResponsavel());
-		alunoEditado.setFoto(editarAluno.getFoto());
-		alunoEditado.setserie(editarAluno.getserie());
-		
-		repository.save(alunoEditado);
-		
+	public ResponseEntity<AlunoResponseDTO> update(@PathVariable Long id, @RequestBody Aluno editarAluno){
+		AlunoResponseDTO alunoEditado = service.update(id, editarAluno);
+
 		return ResponseEntity.ok(alunoEditado);
-		
-	
 	}
 	
 
