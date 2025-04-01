@@ -40,6 +40,7 @@ public class SerieServiceImpl implements SerieService{
 	
 	@Override
 	public String deleteById(@PathVariable Long id) {
+		
 		repository.deleteById(id);
 		return "Serie Deletada";
 	}
