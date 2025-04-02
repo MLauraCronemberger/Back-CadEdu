@@ -56,5 +56,10 @@ public class DisciplinaServiceImpl implements DisciplinaService{
 		return mapper.paraDTO(disciplinaEditada);
 	}
 	
+	@Override
+	public List<DisciplinaResponseDTO> DisciplinasSemDocente(){
+		return mapper.paraListDTO(repository.buscarDisciplinasSemDocente());
+	}
+	
 
 }

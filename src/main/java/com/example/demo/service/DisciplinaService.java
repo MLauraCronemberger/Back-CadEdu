@@ -13,5 +13,6 @@ public interface DisciplinaService {
 	DisciplinaResponseDTO findById(@PathVariable Long id);
 	String deleteById(@PathVariable Long id);
 	DisciplinaResponseDTO update(@PathVariable Long id, Disciplina editarDisciplina);
+	List<DisciplinaResponseDTO> DisciplinasSemDocente();
 	
 }

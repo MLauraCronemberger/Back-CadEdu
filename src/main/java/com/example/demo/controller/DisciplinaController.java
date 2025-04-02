@@ -53,4 +53,9 @@ public class DisciplinaController {
 		return service.update(id, editarDisciplina);
 		
 	}
+	
+	@GetMapping(value="/disponiveis")
+	public List<DisciplinaResponseDTO> DisciplinasSemDocente(){
+		return service.DisciplinasSemDocente();
+	}
 }
