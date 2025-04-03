@@ -26,6 +26,8 @@ public class DisciplinaController {
 	@Autowired
 	private DisciplinaService service;
 	
+	
+	
 	@PostMapping(value= "/cadastrar")
 	public DisciplinaResponseDTO insert(@RequestBody Disciplina disciplina) {
 		return service.create(disciplina);
