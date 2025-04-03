@@ -61,5 +61,16 @@ public class DisciplinaServiceImpl implements DisciplinaService{
 		return mapper.paraListDTO(repository.buscarDisciplinasSemDocente());
 	}
 	
+	@Override
+	public List<DisciplinaResponseDTO> DisciplinaEditar(@PathVariable Long id){
+		Disciplina disc = repository.findById(id).get();
+		List<Disciplina> lista = repository.buscarDisciplinasSemDocente();
+		lista.add(disc);
+		
+		return mapper.paraListDTO(lista);
+		
+		
+	}
+	
 
 }

@@ -58,4 +58,9 @@ public class DisciplinaController {
 	public List<DisciplinaResponseDTO> DisciplinasSemDocente(){
 		return service.DisciplinasSemDocente();
 	}
+	
+	@GetMapping(value="/dropdown-edit/{id}")
+	public List<DisciplinaResponseDTO> DisciplinaEditar(@PathVariable Long id){
+		return service.DisciplinaEditar(id);
+	}
 }

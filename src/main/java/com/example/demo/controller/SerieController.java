@@ -14,9 +14,11 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.example.demo.domain.Serie;
+import com.example.demo.domain.dto.serie.SerieCreateDTO;
 import com.example.demo.domain.dto.serie.SerieResponseDTO;
 import com.example.demo.service.impl.SerieServiceImpl;
+
+import jakarta.validation.Valid;
 
 @RestController
 @RequestMapping(value="/serie")
@@ -29,7 +31,7 @@ public class SerieController {
 //	Para salvar várias series de uma vez o meu requestbody deveria enviar uma lista do tipo serie
 
 	@PostMapping(value="/cadastrar")
-	public ResponseEntity<SerieResponseDTO> insert(@RequestBody Serie serie) {
+	public ResponseEntity<SerieResponseDTO> insert(@Valid @RequestBody SerieCreateDTO serie) {
         return ResponseEntity.ok(service.create(serie));
     }
 
@@ -52,7 +54,7 @@ public class SerieController {
 	}
 	
 	@PutMapping(value="/editar/{id}")
-	public ResponseEntity<SerieResponseDTO> update(@PathVariable Long id, @RequestBody Serie editarSerie){
+	public ResponseEntity<SerieResponseDTO> update(@Valid @PathVariable Long id, @RequestBody SerieCreateDTO editarSerie){
 		return ResponseEntity.ok(service.update(id, editarSerie));
 	}
 	

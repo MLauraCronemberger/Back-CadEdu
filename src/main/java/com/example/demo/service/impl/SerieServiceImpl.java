@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.PathVariable;
 
 import com.example.demo.domain.Serie;
+import com.example.demo.domain.dto.serie.SerieCreateDTO;
 import com.example.demo.domain.dto.serie.SerieResponseDTO;
 import com.example.demo.repository.SerieRepository;
 import com.example.demo.service.SerieService;
@@ -20,8 +21,8 @@ public class SerieServiceImpl implements SerieService{
 	private final SerieMapper mapper = SerieMapper.INSTANCE;
 	
 	@Override
-	public SerieResponseDTO create(Serie serie) {
-		Serie serieCadastrada = repository.save(serie);
+	public SerieResponseDTO create(SerieCreateDTO serie) {
+		Serie serieCadastrada = repository.save(mapper.paraEntidade(serie));
 		return mapper.paraDTO(serieCadastrada);
 	}
 
@@ -46,7 +47,7 @@ public class SerieServiceImpl implements SerieService{
 	}
 	
 	@Override
-	public SerieResponseDTO update(@PathVariable Long id, Serie editarSerie) {
+	public SerieResponseDTO update(@PathVariable Long id, SerieCreateDTO editarSerie) {
 		Serie serieEditada = repository.findById(id).get();
 		serieEditada.setSerie(editarSerie.getSerie());
 		serieEditada.setNivelEnsino(editarSerie.getNivelEnsino());

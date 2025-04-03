@@ -1,20 +1,25 @@
 package com.example.demo.domain.dto.serie;
 
+import jakarta.validation.constraints.Min;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 
-public class SerieResponseDTO {
-	private Long id;
+public class SerieCreateDTO {
+	
+	@NotNull(message= "A serie não pode estar em branco.")
+	@Min(value = 1, message = "A quantidade deve ser no mínimo 1")
 	private int serie;
+	
+	@NotBlank(message= "O nivel de ensino não pode estar vazio.")	
 	private String nivelEnsino;
+	
+	@NotBlank(message= "A turma não pode estar vazia.")
 	private String turma;
+	
+	@NotBlank(message= "O turno não pode estar vazio.")
 	private String turno;
 	
 	
-	public Long getId() {
-		return id;
-	}
-	public void setId(Long id) {
-		this.id = id;
-	}
 	public int getSerie() {
 		return serie;
 	}
@@ -41,5 +46,5 @@ public class SerieResponseDTO {
 	}
 	
 	
-	
+
 }
