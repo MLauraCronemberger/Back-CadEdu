@@ -61,7 +61,7 @@ public class DisciplinaServiceImpl implements DisciplinaService{
 		Disciplina disciplinaEditada = repository.findById(id).get();
 		
 		Serie serieDisciplina = repositorySerie.findById(editarDisciplina.getSerie().getId()).orElseThrow(
-				() -> new RuntimeException());
+				() -> new RuntimeException("nao encotrnado...."));
 		
 		
 		disciplinaEditada.setDisc(editarDisciplina.getDisc());
