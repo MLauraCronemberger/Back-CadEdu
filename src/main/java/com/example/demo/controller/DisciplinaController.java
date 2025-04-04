@@ -54,7 +54,7 @@ public class DisciplinaController {
 	}
 	
 	@PutMapping(value="/editar/{id}")
-	public DisciplinaResponseDTO update(@PathVariable Long id,  @RequestBody Disciplina editarDisciplina){
+	public DisciplinaResponseDTO update(@PathVariable Long id, @Valid @RequestBody DisciplinaCreateDTO editarDisciplina){
 		return service.update(id, editarDisciplina);
 		
 	}

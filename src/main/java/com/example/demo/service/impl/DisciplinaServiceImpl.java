@@ -1,24 +1,36 @@
 package com.example.demo.service.impl;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.PathVariable;
 
 import com.example.demo.domain.Disciplina;
+import com.example.demo.domain.Serie;
 import com.example.demo.domain.dto.disciplina.DisciplinaCreateDTO;
 import com.example.demo.domain.dto.disciplina.DisciplinaResponseDTO;
+import com.example.demo.domain.dto.serie.SerieCreateDTO;
 import com.example.demo.repository.DisciplinaRepository;
+import com.example.demo.repository.SerieRepository;
 import com.example.demo.service.DisciplinaService;
 import com.example.demo.service.mapper.DisciplinaMapper;
+import com.example.demo.service.mapper.SerieMapper;
+
+import jakarta.validation.Valid;
 
 @Service
 public class DisciplinaServiceImpl implements DisciplinaService{
 	
 	@Autowired
 	private DisciplinaRepository repository;
+	
+	@Autowired
+	private SerieRepository repositorySerie;
+	
 	private final DisciplinaMapper mapper = DisciplinaMapper.INSTANCE;
+	private final SerieMapper mapperSerie = SerieMapper.INSTANCE;
 	
 	@Override
 	public DisciplinaResponseDTO create(DisciplinaCreateDTO disciplina) {
@@ -45,12 +57,16 @@ public class DisciplinaServiceImpl implements DisciplinaService{
 	}
 	
 	@Override
-	public DisciplinaResponseDTO update(@PathVariable Long id, Disciplina editarDisciplina) {
+	public DisciplinaResponseDTO update(@PathVariable Long id, @Valid DisciplinaCreateDTO editarDisciplina) {
 		Disciplina disciplinaEditada = repository.findById(id).get();
+		
+		Serie serieDisciplina = repositorySerie.findById(editarDisciplina.getSerie().getId()).orElseThrow(
+				() -> new RuntimeException());
+		
 		
 		disciplinaEditada.setDisc(editarDisciplina.getDisc());
 		disciplinaEditada.setCh(editarDisciplina.getCh());
-		disciplinaEditada.setSerie(editarDisciplina.getSerie());
+		disciplinaEditada.setSerie(serieDisciplina);
 		
 		repository.save(disciplinaEditada);
 		

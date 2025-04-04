@@ -23,10 +23,5 @@ public interface DisciplinaMapper {
 	
 	Disciplina paraEntidade (DisciplinaCreateDTO disciplinaCreate);
 	
-//	SerieCreateDTO toDTO (Serie serie);
-//	
-//	Serie paraEntidade (SerieCreateDTO serieCreate);
-//	
-//	List<SerieCreateDTO> toListDTO (List<Serie> serie);
 
 }

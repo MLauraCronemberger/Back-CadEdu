@@ -13,7 +13,7 @@ public interface DisciplinaService {
 	List<DisciplinaResponseDTO> findAll();
 	DisciplinaResponseDTO findById(@PathVariable Long id);
 	String deleteById(@PathVariable Long id);
-	DisciplinaResponseDTO update(@PathVariable Long id, Disciplina editarDisciplina);
+	DisciplinaResponseDTO update(@PathVariable Long id, DisciplinaCreateDTO editarDisciplina);
 	List<DisciplinaResponseDTO> DisciplinasSemDocente();
 	List<DisciplinaResponseDTO> DisciplinaEditar(@PathVariable Long id);
 	
