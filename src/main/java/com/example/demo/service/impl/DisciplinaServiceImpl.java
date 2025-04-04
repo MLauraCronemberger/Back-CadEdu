@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.PathVariable;
 
 import com.example.demo.domain.Disciplina;
+import com.example.demo.domain.dto.disciplina.DisciplinaCreateDTO;
 import com.example.demo.domain.dto.disciplina.DisciplinaResponseDTO;
 import com.example.demo.repository.DisciplinaRepository;
 import com.example.demo.service.DisciplinaService;
@@ -20,8 +21,8 @@ public class DisciplinaServiceImpl implements DisciplinaService{
 	private final DisciplinaMapper mapper = DisciplinaMapper.INSTANCE;
 	
 	@Override
-	public DisciplinaResponseDTO create(Disciplina disciplina) {
-		Disciplina newDisciplina = repository.save(disciplina);
+	public DisciplinaResponseDTO create(DisciplinaCreateDTO disciplina) {
+		Disciplina newDisciplina = repository.save(mapper.paraEntidade(disciplina));
 		return mapper.paraDTO(newDisciplina);
 	}
 	

@@ -14,8 +14,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.demo.domain.Disciplina;
+import com.example.demo.domain.dto.disciplina.DisciplinaCreateDTO;
 import com.example.demo.domain.dto.disciplina.DisciplinaResponseDTO;
 import com.example.demo.service.DisciplinaService;
+
+import jakarta.validation.Valid;
 
 
 @RestController
@@ -29,7 +32,7 @@ public class DisciplinaController {
 	
 	
 	@PostMapping(value= "/cadastrar")
-	public DisciplinaResponseDTO insert(@RequestBody Disciplina disciplina) {
+	public DisciplinaResponseDTO insert(@Valid @RequestBody DisciplinaCreateDTO disciplina) {
 		return service.create(disciplina);
 	}
 	
@@ -51,7 +54,7 @@ public class DisciplinaController {
 	}
 	
 	@PutMapping(value="/editar/{id}")
-	public DisciplinaResponseDTO update(@PathVariable Long id, @RequestBody Disciplina editarDisciplina){
+	public DisciplinaResponseDTO update(@PathVariable Long id,  @RequestBody Disciplina editarDisciplina){
 		return service.update(id, editarDisciplina);
 		
 	}

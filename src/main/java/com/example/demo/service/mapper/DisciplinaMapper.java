@@ -6,6 +6,7 @@ import org.mapstruct.Mapper;
 import org.mapstruct.factory.Mappers;
 
 import com.example.demo.domain.Disciplina;
+import com.example.demo.domain.dto.disciplina.DisciplinaCreateDTO;
 import com.example.demo.domain.dto.disciplina.DisciplinaResponseDTO;
 
 @Mapper(componentModel="spring")
@@ -16,6 +17,16 @@ public interface DisciplinaMapper {
 	
 	List<DisciplinaResponseDTO> paraListDTO (List<Disciplina> disciplina);
 	
+	DisciplinaCreateDTO toDTO (Disciplina disciplina);
 	
+	List<DisciplinaCreateDTO> toListDTO (List<Disciplina> disciplina);
+	
+	Disciplina paraEntidade (DisciplinaCreateDTO disciplinaCreate);
+	
+//	SerieCreateDTO toDTO (Serie serie);
+//	
+//	Serie paraEntidade (SerieCreateDTO serieCreate);
+//	
+//	List<SerieCreateDTO> toListDTO (List<Serie> serie);
 
 }
