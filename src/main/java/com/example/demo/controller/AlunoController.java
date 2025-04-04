@@ -16,8 +16,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.demo.domain.Aluno;
+import com.example.demo.domain.dto.aluno.AlunoCreateDTO;
 import com.example.demo.domain.dto.aluno.AlunoResponseDTO;
 import com.example.demo.service.impl.AlunoServiceImpl;
+
+import jakarta.validation.Valid;
 
 
 @RestController
@@ -29,7 +32,7 @@ public class AlunoController {
 	private AlunoServiceImpl service;
 	
 	@PostMapping(value="/cadastrar")
-	public AlunoResponseDTO insert (@RequestBody Aluno aluno) {
+	public AlunoResponseDTO insert (@Valid @RequestBody AlunoCreateDTO aluno) {
 		return service.create(aluno);
 		
 	}

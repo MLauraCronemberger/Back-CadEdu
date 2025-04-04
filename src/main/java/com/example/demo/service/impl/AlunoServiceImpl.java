@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.PathVariable;
 
 import com.example.demo.domain.Aluno;
+import com.example.demo.domain.dto.aluno.AlunoCreateDTO;
 import com.example.demo.domain.dto.aluno.AlunoResponseDTO;
 import com.example.demo.repository.AlunoRepository;
 import com.example.demo.service.AlunoService;
@@ -20,8 +21,8 @@ public class AlunoServiceImpl implements AlunoService {
 	private final AlunoMapper mapper = AlunoMapper.INSTANCE;
 	
 	@Override
-	public AlunoResponseDTO create(Aluno aluno){
-		Aluno newAluno = repository.save(aluno);
+	public AlunoResponseDTO create(AlunoCreateDTO aluno){
+		Aluno newAluno = repository.save(mapper.paraEntidade(aluno));
 		return mapper.paraDTO(newAluno);
 	}
 	

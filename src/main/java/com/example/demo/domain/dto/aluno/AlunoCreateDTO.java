@@ -2,18 +2,28 @@ package com.example.demo.domain.dto.aluno;
 
 import com.example.demo.domain.dto.serie.SerieResponseDTO;
 
+import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
 
-public class AlunoResponseDTO {
+public class AlunoCreateDTO {
+	
+	@NotBlank(message="O campo nome deve ser preenchido")
 	private String nome;
 	
 	@Size(min=14, max=14, message="O cpf deve estar no formato correto.")
 	private String cpf;
+	
+	@NotBlank(message="O campo data de nascimento deve ser preenchido.")
 	private String datnasc;
-	private Long id;
+	
+	@NotBlank(message="O campo data de responsavel deve ser preenchido.")
 	private String responsavel;
+	
+	@NotBlank(message="O campo foto deve ser preenchido.")
 	private String foto;
+	
 	private SerieResponseDTO serie;
+	
 	public String getNome() {
 		return nome;
 	}
@@ -31,12 +41,6 @@ public class AlunoResponseDTO {
 	}
 	public void setDatnasc(String datnasc) {
 		this.datnasc = datnasc;
-	}
-	public Long getId() {
-		return id;
-	}
-	public void setId(Long id) {
-		this.id = id;
 	}
 	public String getResponsavel() {
 		return responsavel;
@@ -56,6 +60,7 @@ public class AlunoResponseDTO {
 	public void setSerie(SerieResponseDTO serie) {
 		this.serie = serie;
 	}
+	
 	
 
 }

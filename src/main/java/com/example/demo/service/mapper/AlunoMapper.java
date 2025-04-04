@@ -6,6 +6,7 @@ import org.mapstruct.Mapper;
 import org.mapstruct.factory.Mappers;
 
 import com.example.demo.domain.Aluno;
+import com.example.demo.domain.dto.aluno.AlunoCreateDTO;
 import com.example.demo.domain.dto.aluno.AlunoResponseDTO;
 
 
@@ -17,6 +18,12 @@ public interface AlunoMapper {
 	AlunoResponseDTO paraDTO (Aluno aluno);
 	
 	List<AlunoResponseDTO> paraListDTO (List<Aluno> aluno);
+	
+	AlunoCreateDTO toDTO (Aluno aluno);
+	
+	List<AlunoCreateDTO> toListDTO (List<Aluno> aluno);
+	
+	Aluno paraEntidade (AlunoCreateDTO aluno);
 
 	
 }
