@@ -15,8 +15,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.demo.domain.Docente;
+import com.example.demo.domain.dto.docente.DocenteCreateDTO;
 import com.example.demo.domain.dto.docente.DocenteResponseDTO;
 import com.example.demo.service.DocenteService;
+
+import jakarta.validation.Valid;
 
 
 @RestController
@@ -28,7 +31,7 @@ public class DocenteController {
 	private DocenteService service;
 	
 	@PostMapping(value="/cadastrar")
-	public DocenteResponseDTO insert(@RequestBody Docente docente) {
+	public DocenteResponseDTO insert(@Valid @RequestBody DocenteCreateDTO docente) {
 		return service.create(docente);
 	}
 	
