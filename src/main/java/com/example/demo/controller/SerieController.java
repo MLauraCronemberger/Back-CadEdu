@@ -54,7 +54,7 @@ public class SerieController {
 	}
 	
 	@PutMapping(value="/editar/{id}")
-	public ResponseEntity<SerieResponseDTO> update(@Valid @PathVariable Long id, @RequestBody SerieCreateDTO editarSerie){
+	public ResponseEntity<SerieResponseDTO> update(@PathVariable Long id, @Valid @RequestBody SerieCreateDTO editarSerie){
 		return ResponseEntity.ok(service.update(id, editarSerie));
 	}
 	
