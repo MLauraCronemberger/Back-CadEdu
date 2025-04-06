@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.example.demo.domain.Disciplina;
 import com.example.demo.domain.dto.disciplina.DisciplinaCreateDTO;
 import com.example.demo.domain.dto.disciplina.DisciplinaResponseDTO;
 import com.example.demo.service.DisciplinaService;

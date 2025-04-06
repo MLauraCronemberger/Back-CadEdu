@@ -1,9 +1,10 @@
 package com.example.demo.domain.dto.docente;
 
-import com.example.demo.domain.dto.disciplina.DisciplinaResponseDTO;
+import com.example.demo.domain.Disciplina;
 
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 
 public class DocenteCreateDTO {
@@ -26,7 +27,8 @@ public class DocenteCreateDTO {
 	@NotBlank(message="O campo de cargo deve ser preenchido.")
 	private String cargo;
 	
-	private DisciplinaResponseDTO disciplina;
+	@NotNull(message="O campo de disciplina precisa ser preenchido.")
+	private Disciplina disciplina;
 	
 	public String getNome() {
 		return nome;
@@ -64,10 +66,10 @@ public class DocenteCreateDTO {
 	public void setCargo(String cargo) {
 		this.cargo = cargo;
 	}
-	public DisciplinaResponseDTO getDisciplina() {
+	public Disciplina getDisciplina() {
 		return disciplina;
 	}
-	public void setDisciplina(DisciplinaResponseDTO disciplina) {
+	public void setDisciplina(Disciplina disciplina) {
 		this.disciplina = disciplina;
 	}
 	

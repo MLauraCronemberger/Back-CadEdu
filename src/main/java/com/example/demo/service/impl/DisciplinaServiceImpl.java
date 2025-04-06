@@ -1,7 +1,6 @@
 package com.example.demo.service.impl;
 
 import java.util.List;
-import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -11,12 +10,10 @@ import com.example.demo.domain.Disciplina;
 import com.example.demo.domain.Serie;
 import com.example.demo.domain.dto.disciplina.DisciplinaCreateDTO;
 import com.example.demo.domain.dto.disciplina.DisciplinaResponseDTO;
-import com.example.demo.domain.dto.serie.SerieCreateDTO;
 import com.example.demo.repository.DisciplinaRepository;
 import com.example.demo.repository.SerieRepository;
 import com.example.demo.service.DisciplinaService;
 import com.example.demo.service.mapper.DisciplinaMapper;
-import com.example.demo.service.mapper.SerieMapper;
 
 import jakarta.validation.Valid;
 
@@ -30,7 +27,6 @@ public class DisciplinaServiceImpl implements DisciplinaService{
 	private SerieRepository repositorySerie;
 	
 	private final DisciplinaMapper mapper = DisciplinaMapper.INSTANCE;
-	private final SerieMapper mapperSerie = SerieMapper.INSTANCE;
 	
 	@Override
 	public DisciplinaResponseDTO create(DisciplinaCreateDTO disciplina) {

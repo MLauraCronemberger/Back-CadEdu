@@ -14,7 +14,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.example.demo.domain.Docente;
 import com.example.demo.domain.dto.docente.DocenteCreateDTO;
 import com.example.demo.domain.dto.docente.DocenteResponseDTO;
 import com.example.demo.service.DocenteService;
@@ -51,7 +50,7 @@ public class DocenteController {
 	}
 	
 	@PutMapping(value="/editar/{id}")
-	public ResponseEntity<DocenteResponseDTO> update(@PathVariable Long id, @RequestBody Docente editarDocente){
+	public ResponseEntity<DocenteResponseDTO> update(@PathVariable Long id, @Valid @RequestBody DocenteCreateDTO editarDocente){
 		return ResponseEntity.ok(service.update(id, editarDocente));		
 	}
 	

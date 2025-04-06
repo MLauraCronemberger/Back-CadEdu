@@ -6,9 +6,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.PathVariable;
 
+import com.example.demo.domain.Disciplina;
 import com.example.demo.domain.Docente;
 import com.example.demo.domain.dto.docente.DocenteCreateDTO;
 import com.example.demo.domain.dto.docente.DocenteResponseDTO;
+import com.example.demo.repository.DisciplinaRepository;
 import com.example.demo.repository.DocenteRepository;
 import com.example.demo.service.DocenteService;
 import com.example.demo.service.mapper.DocenteMapper;
@@ -18,6 +20,10 @@ public class DocenteServiceImpl implements DocenteService {
 	
 	@Autowired
 	private DocenteRepository repository;
+	
+	@Autowired
+	private DisciplinaRepository repositoryDisciplina;
+	
 	private final DocenteMapper mapper = DocenteMapper.INSTANCE;
 	
 	@Override
@@ -45,8 +51,10 @@ public class DocenteServiceImpl implements DocenteService {
 	}
 	
 	@Override
-	public DocenteResponseDTO update(@PathVariable Long id, Docente editarDocente) {
+	public DocenteResponseDTO update(@PathVariable Long id, DocenteCreateDTO editarDocente) {
 		Docente docenteEditado = repository.findById(id).get();
+		Disciplina disciplina = repositoryDisciplina.findById(editarDocente.getDisciplina().getId()).orElseThrow(
+				() -> new RuntimeException("Disciplina não encontrada."));
 		
 		docenteEditado.setNome(editarDocente.getNome());
 		docenteEditado.setCpf(editarDocente.getCpf());
@@ -54,7 +62,7 @@ public class DocenteServiceImpl implements DocenteService {
 		docenteEditado.setTel(editarDocente.getTel());
 		docenteEditado.setEmail(editarDocente.getEmail());
 		docenteEditado.setCargo(editarDocente.getCargo());
-		docenteEditado.setDisciplina(editarDocente.getDisciplina());
+		docenteEditado.setDisciplina(disciplina);
 		
 		repository.save(docenteEditado);
 		

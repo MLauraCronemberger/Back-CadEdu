@@ -1,8 +1,6 @@
 package com.example.demo.domain.dto.disciplina;
 
 import com.example.demo.domain.Serie;
-import com.example.demo.domain.dto.serie.SerieCreateDTO;
-import com.example.demo.domain.dto.serie.SerieResponseDTO;
 
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
