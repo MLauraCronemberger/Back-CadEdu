@@ -1,8 +1,9 @@
 package com.example.demo.domain.dto.aluno;
 
-import com.example.demo.domain.dto.serie.SerieResponseDTO;
+import com.example.demo.domain.Serie;
 
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 
 public class AlunoCreateDTO {
@@ -19,10 +20,11 @@ public class AlunoCreateDTO {
 	@NotBlank(message="O campo data de responsavel deve ser preenchido.")
 	private String responsavel;
 	
-	@NotBlank(message="O campo foto deve ser preenchido.")
+//	@NotBlank(message="O campo foto deve ser preenchido.")
 	private String foto;
 	
-	private SerieResponseDTO serie;
+	@NotNull(message="O campo série deve ser preenchido.")
+	private Serie serie;
 	
 	public String getNome() {
 		return nome;
@@ -54,10 +56,10 @@ public class AlunoCreateDTO {
 	public void setFoto(String foto) {
 		this.foto = foto;
 	}
-	public SerieResponseDTO getSerie() {
+	public Serie getSerie() {
 		return serie;
 	}
-	public void setSerie(SerieResponseDTO serie) {
+	public void setSerie(Serie serie) {
 		this.serie = serie;
 	}
 	

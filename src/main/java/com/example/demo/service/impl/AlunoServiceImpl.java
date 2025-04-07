@@ -7,9 +7,11 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.PathVariable;
 
 import com.example.demo.domain.Aluno;
+import com.example.demo.domain.Serie;
 import com.example.demo.domain.dto.aluno.AlunoCreateDTO;
 import com.example.demo.domain.dto.aluno.AlunoResponseDTO;
 import com.example.demo.repository.AlunoRepository;
+import com.example.demo.repository.SerieRepository;
 import com.example.demo.service.AlunoService;
 import com.example.demo.service.mapper.AlunoMapper;
 
@@ -18,6 +20,10 @@ public class AlunoServiceImpl implements AlunoService {
 	
 	@Autowired
 	private AlunoRepository repository;
+	
+	@Autowired
+	private SerieRepository repositorySerie;
+	
 	private final AlunoMapper mapper = AlunoMapper.INSTANCE;
 	
 	@Override
@@ -49,15 +55,17 @@ public class AlunoServiceImpl implements AlunoService {
 
 	
 	@Override
-	public AlunoResponseDTO update(@PathVariable Long id, Aluno editarAluno){
+	public AlunoResponseDTO update(@PathVariable Long id, AlunoCreateDTO editarAluno){
 		Aluno alunoEditado = repository.findById(id).get();
+		Serie serieAluno = repositorySerie.findById(editarAluno.getSerie().getId()).orElseThrow(
+				() -> new RuntimeException("nao encotrnado...."));
 		
 		alunoEditado.setNome(editarAluno.getNome());
 		alunoEditado.setCpf(editarAluno.getCpf());
 		alunoEditado.setDatnasc(editarAluno.getDatnasc());
 		alunoEditado.setResponsavel(editarAluno.getResponsavel());
 		alunoEditado.setFoto(editarAluno.getFoto());
-		alunoEditado.setserie(editarAluno.getserie());
+		alunoEditado.setserie(serieAluno);
 		
 		repository.save(alunoEditado);
 		

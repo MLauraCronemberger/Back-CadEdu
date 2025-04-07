@@ -14,6 +14,6 @@ public interface AlunoService {
 	List<AlunoResponseDTO> findAll();
 	AlunoResponseDTO findById(@PathVariable Long id);
 	String deleteById(@PathVariable Long id);
-	AlunoResponseDTO update(@PathVariable Long id, Aluno editarAluno);
+	AlunoResponseDTO update(@PathVariable Long id, AlunoCreateDTO editarAluno);
 
 }

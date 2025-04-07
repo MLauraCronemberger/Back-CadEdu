@@ -15,7 +15,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.example.demo.domain.Aluno;
 import com.example.demo.domain.dto.aluno.AlunoCreateDTO;
 import com.example.demo.domain.dto.aluno.AlunoResponseDTO;
 import com.example.demo.service.impl.AlunoServiceImpl;
@@ -53,7 +52,7 @@ public class AlunoController {
 	}
 	
 	@PutMapping(value="/editar/{id}")
-	public ResponseEntity<AlunoResponseDTO> update(@PathVariable Long id, @RequestBody Aluno editarAluno){
+	public ResponseEntity<AlunoResponseDTO> update(@PathVariable Long id, @Valid @RequestBody AlunoCreateDTO editarAluno){
 		return ResponseEntity.ok(service.update(id, editarAluno));
 	}
 	
