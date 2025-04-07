@@ -4,7 +4,6 @@ import java.util.List;
 
 import org.springframework.web.bind.annotation.PathVariable;
 
-import com.example.demo.domain.Aluno;
 import com.example.demo.domain.dto.aluno.AlunoCreateDTO;
 import com.example.demo.domain.dto.aluno.AlunoResponseDTO;
 
