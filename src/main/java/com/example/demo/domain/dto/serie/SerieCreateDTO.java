@@ -7,16 +7,16 @@ import jakarta.validation.constraints.NotNull;
 public class SerieCreateDTO {
 	
 	@NotNull(message= "A serie não pode estar em branco.")
-	@Min(value = 1, message = "A quantidade deve ser no mínimo 1")
+	@Min(value = 1, message = "O campo de série não pode estar vazio.")
 	private int serie;
 	
-	@NotBlank(message= "O nivel de ensino não pode estar vazio.")	
+	@NotBlank(message= "O campo de nivel de ensino não pode estar vazio.")	
 	private String nivelEnsino;
 	
-	@NotBlank(message= "A turma não pode estar vazia.")
+	@NotBlank(message= "O campo da turma não pode estar vazio.")
 	private String turma;
 	
-	@NotBlank(message= "O turno não pode estar vazio.")
+	@NotBlank(message= "O campo do turno não pode estar vazio.")
 	private String turno;
 	
 	
