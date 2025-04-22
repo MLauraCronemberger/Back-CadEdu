@@ -67,4 +67,11 @@ public class DisciplinaController {
 	public List<DisciplinaResponseDTO> DisciplinaEditar(@PathVariable Long id){
 		return service.DisciplinaEditar(id);
 	}
+	
+	@GetMapping(value="/pesquisar/{disc}")
+	public List<DisciplinaResponseDTO> Pesquisa(@PathVariable String disc){
+		return service.Pesquisa(disc);
+	}
+	
+	
 }

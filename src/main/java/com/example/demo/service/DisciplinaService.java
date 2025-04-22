@@ -15,6 +15,7 @@ public interface DisciplinaService {
 	DisciplinaResponseDTO update(@PathVariable Long id, DisciplinaCreateDTO editarDisciplina);
 	List<DisciplinaResponseDTO> DisciplinasSemDocente();
 	List<DisciplinaResponseDTO> DisciplinaEditar(@PathVariable Long id);
+	List<DisciplinaResponseDTO> Pesquisa(String disc);
 	
 }
 

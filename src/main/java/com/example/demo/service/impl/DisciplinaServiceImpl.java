@@ -82,7 +82,11 @@ public class DisciplinaServiceImpl implements DisciplinaService{
 		
 		return mapper.paraListDTO(lista);
 		
-		
+	}
+	
+	@Override
+	public List<DisciplinaResponseDTO> Pesquisa(String disc){
+		return mapper.paraListDTO(repository.buscarDisciplina(disc));
 	}
 	
 
