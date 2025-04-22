@@ -71,6 +71,7 @@ public class DisciplinaController {
 	@GetMapping(value="/pesquisar/{disc}")
 	public List<DisciplinaResponseDTO> Pesquisa(@PathVariable String disc){
 		return service.Pesquisa(disc);
+//		return service.Pesquisa(disc.replaceAll(disc, disc));
 	}
 	
 	
