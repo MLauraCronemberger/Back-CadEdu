@@ -71,6 +71,12 @@ public class AlunoServiceImpl implements AlunoService {
 		
 		return mapper.paraDTO(alunoEditado);
 	}
+	
+	
+	@Override
+	public	List<AlunoResponseDTO> Pesquisa(@PathVariable String nome){
+		return mapper.paraListDTO(repository.buscarAluno(nome));
+	}
 
 	
 	

@@ -56,5 +56,9 @@ public class AlunoController {
 		return ResponseEntity.ok(service.update(id, editarAluno));
 	}
 	
+	@GetMapping(value="/pesquisar/{nome}")
+	public List<AlunoResponseDTO> Pesquisa(@PathVariable String nome){
+		return service.Pesquisa(nome);
+	}
 
 }
