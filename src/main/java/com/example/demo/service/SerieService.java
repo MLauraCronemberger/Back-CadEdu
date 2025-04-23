@@ -14,6 +14,7 @@ public interface SerieService {
 	SerieResponseDTO findById(@PathVariable Long id);
 	String deleteById(@PathVariable Long id);
 	SerieResponseDTO update(@PathVariable Long id, SerieCreateDTO editarSerie);
+	List<SerieResponseDTO> pesquisa(@PathVariable int serie);
 
 
 }

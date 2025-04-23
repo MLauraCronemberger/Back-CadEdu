@@ -59,7 +59,11 @@ public class SerieServiceImpl implements SerieService{
 		return mapper.paraDTO(serieEditada);
 		
 	}
-
+	
+	@Override
+	public List<SerieResponseDTO> pesquisa(@PathVariable int serie){
+		return mapper.paraListDTO(repository.buscarSerie(serie));
+	}
 
 
 	

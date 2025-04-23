@@ -58,4 +58,8 @@ public class SerieController {
 		return ResponseEntity.ok(service.update(id, editarSerie));
 	}
 	
+	@GetMapping(value="/pesquisar/{serie}")
+	public List<SerieResponseDTO> pesquisa(@PathVariable int serie){
+		return service.pesquisa(serie);
+	}
 }
