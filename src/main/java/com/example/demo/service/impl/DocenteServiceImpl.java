@@ -69,6 +69,11 @@ public class DocenteServiceImpl implements DocenteService {
 		return mapper.paraDTO(docenteEditado);
 	}
 	
+	@Override
+	public List<DocenteResponseDTO> pesquisa(@PathVariable String nome){
+		return mapper.paraListDTO(repository.buscarDocente(nome));
+	}
+	
 
 
 

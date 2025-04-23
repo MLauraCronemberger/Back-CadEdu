@@ -13,6 +13,7 @@ public interface DocenteService {
 	DocenteResponseDTO findById(@PathVariable Long id);
 	String deleteById(@PathVariable Long id);
 	DocenteResponseDTO update(@PathVariable Long id, DocenteCreateDTO editarDocente);
+	List<DocenteResponseDTO> pesquisa(@PathVariable String nome);
 	
 	//SE DER PROBLEMA É NO UPDATE QUE RECEBE DOCENTECREATEDTO
 

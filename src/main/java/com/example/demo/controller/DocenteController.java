@@ -54,6 +54,11 @@ public class DocenteController {
 		return ResponseEntity.ok(service.update(id, editarDocente));		
 	}
 	
+	@GetMapping(value="/pesquisar/{nome}")
+	public List<DocenteResponseDTO> pesquisa(@PathVariable String nome){
+		return service.pesquisa(nome);
+		
+	}
 }
 		
 		
