@@ -20,7 +20,11 @@ public interface DisciplinaRepository extends JpaRepository<Disciplina, Long> {
 //	@Query(value= "SELECT a FROM Disciplina a WHERE a.nome LIKE CONCAT('%', ?1, '%')\", nativeQuery = true)
 
 	//Usando o JPQL, aí tudo tem que estar de acordo com as Entidades
-	@Query("SELECT a FROM Disciplina a WHERE a.disc ILIKE %:disc%")
+//	@Query("SELECT a FROM Disciplina a WHERE a.disc ILIKE %:disc%")
+	
+	@Query(value= "SELECT * FROM Disciplina a WHERE unaccent(a.disc) ILIKE unaccent(CONCAT('%', :disc, '%'))", nativeQuery=true)
 	List<Disciplina> buscarDisciplina(@Param("disc") String disc);
+	
+
 	
 }
