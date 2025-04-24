@@ -1,5 +1,6 @@
 package com.example.demo.domain.dto.users;
 
+import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
 
@@ -13,7 +14,7 @@ public class UsersCreateDTO {
 	@NotBlank(message="O campo data de nascimento deve ser preenchido.")
 	private String datnasc;
 	
-	@NotBlank(message="O campo de email precisa ser preenchido.")
+	@Email(message="O e-mail deve ser inserido no formato correto")
 	private String email;
 	
 	@NotBlank(message="O campo de senha precisa ser preenchido.")
