@@ -31,7 +31,7 @@ public class TokenController {
 	public ResponseEntity<UsersLoginRequestDTO> login(@RequestBody UsersLoginRequestDTO loginRequest){
 		var email= repository.findByEmail(loginRequest.email());
 		
-		if(email.isEmpty()) {
+		if(email.isEmpty() || email.get().isLoginCorrect(loginRequest)) {
 			throw new BadCredentialsException("O e-mail ou a senha estão incorretos.");
 		} 
 		
