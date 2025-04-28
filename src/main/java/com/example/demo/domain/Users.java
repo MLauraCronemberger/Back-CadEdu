@@ -46,6 +46,10 @@ public class Users extends Pessoa {
 		this.senha = senha;
 	}
 	
+//	public boolean isLoginCorrect(LoginRequest loginRequest) {
+//		return false;
+//	}
+	
 	
 	
 	
