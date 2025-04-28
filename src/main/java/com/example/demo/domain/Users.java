@@ -43,6 +43,10 @@ public class Users extends Pessoa {
 	}
 	
 	
+	
+	public Users() {
+		super();
+	}
 	public Users(String nome, String cpf, String datnasc, Long id, String email, String senha) {
 		super(nome, cpf, datnasc);
 		this.id = id;
