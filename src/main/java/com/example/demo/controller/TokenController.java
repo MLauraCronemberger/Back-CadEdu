@@ -21,6 +21,7 @@ import com.example.demo.domain.Users;
 import com.example.demo.domain.dto.users.UsersCreateDTO;
 import com.example.demo.domain.dto.users.UsersLoginRequestDTO;
 import com.example.demo.domain.dto.users.UsersLoginResponseDTO;
+import com.example.demo.domain.dto.users.UsersResponseDTO;
 import com.example.demo.repository.UsersRepository;
 import com.example.demo.service.mapper.UsersMapper;
 
@@ -42,7 +43,7 @@ public class TokenController {
 	}
 	
 	@PostMapping("/cadastro")
-	public UsersCreateDTO cadastro(@RequestBody UsersCreateDTO createUser){
+	public UsersResponseDTO cadastro(@RequestBody UsersCreateDTO createUser){
 		var userFromDb= repository.findByEmail(createUser.getEmail());
 		if (userFromDb.isPresent()) {
 			throw new ResponseStatusException(HttpStatus.UNPROCESSABLE_ENTITY);
@@ -57,7 +58,7 @@ public class TokenController {
 		
 		repository.save(user);
 		
-		return mapper.paraCreateDTO(user);
+		return mapper.paraResponseDTO(user);
 		
 	}
 	

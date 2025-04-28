@@ -5,7 +5,7 @@ import org.mapstruct.factory.Mappers;
 
 import com.example.demo.domain.Users;
 import com.example.demo.domain.dto.users.UsersCreateDTO;
-import com.example.demo.domain.dto.users.UsersLoginDTO;
+import com.example.demo.domain.dto.users.UsersResponseDTO;
 
 @Mapper(componentModel="spring")
 public interface UsersMapper {
@@ -14,9 +14,9 @@ public interface UsersMapper {
 	
 	UsersCreateDTO paraCreateDTO (Users user);
 	
-	UsersLoginDTO paraLoginDTO (Users user);
+	UsersResponseDTO paraResponseDTO (Users user);
 	
-	Users paraLoginDTO (UsersLoginDTO user);
+	Users paraLoginDTO (UsersResponseDTO user);
 	
 	
 	
