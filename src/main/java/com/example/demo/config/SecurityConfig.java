@@ -40,7 +40,9 @@ public class SecurityConfig {
 	@Bean
 	public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
 		
-		http.authorizeHttpRequests(authorize -> authorize.anyRequest().authenticated());
+		http.authorizeHttpRequests(authorize -> authorize
+				.requestMatchers("/cadastro", "/login").permitAll()
+				.anyRequest().authenticated());
 		
 		//Configuração que é melhor mantermos localmente, pq é uma vulnerabilidade que facilita nossos testes
 		

@@ -62,6 +62,11 @@ public class TokenController {
 		
 	}
 	
+//	@PostMapping("/cadastro")
+//	public String cadastro(){
+//		return "Chegou!";
+//	}
+	
 	@PostMapping("/login")
 	public ResponseEntity<UsersLoginResponseDTO> login(@RequestBody UsersLoginRequestDTO loginRequest){
 		var email= repository.findByEmail(loginRequest.email());
