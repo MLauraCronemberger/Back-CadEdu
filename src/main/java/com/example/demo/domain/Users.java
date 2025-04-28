@@ -1,5 +1,9 @@
 package com.example.demo.domain;
 
+import org.springframework.security.crypto.password.PasswordEncoder;
+
+import com.example.demo.domain.dto.users.UsersLoginRequestDTO;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -46,9 +50,11 @@ public class Users extends Pessoa {
 		this.senha = senha;
 	}
 	
-//	public boolean isLoginCorrect(LoginRequest loginRequest) {
-//		return false;
-//	}
+	public boolean isLoginCorrect(UsersLoginRequestDTO loginRequest, PasswordEncoder passwordEncoder) {
+		
+		return passwordEncoder.matches(loginRequest.senha(), this.senha);
+		
+	}
 	
 	
 	
