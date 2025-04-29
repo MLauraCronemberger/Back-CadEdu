@@ -46,7 +46,6 @@ public class SecurityConfig {
 		
 		http
       .cors(cors -> {}) // ativa CORS sem precisar do .and()
-      .csrf(csrf -> csrf.disable()) // desativa CSRF
 		.authorizeHttpRequests(authorize -> authorize
  				.requestMatchers("/cadastro", "/login").permitAll()
  				.anyRequest().authenticated());
