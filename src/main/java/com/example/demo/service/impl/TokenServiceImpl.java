@@ -69,7 +69,7 @@ public class TokenServiceImpl implements TokenService {
 		
 		var now = Instant.now();
 		
-		var expiresIn = 400L;
+		var expiresIn = 60L;
 		
 		var claims = JwtClaimsSet.builder()
 				.issuer("mybackend")
