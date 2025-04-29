@@ -22,7 +22,7 @@ import jakarta.validation.Valid;
 
 @RestController
 @RequestMapping(value="/serie")
-@CrossOrigin("http://localhost:5173")
+@CrossOrigin("*")
 public class SerieController {
 	
 	@Autowired

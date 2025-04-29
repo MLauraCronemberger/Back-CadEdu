@@ -44,10 +44,14 @@ public class SecurityConfig {
 	@Bean
 	public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
 		
-		http.cors(cors -> cors.configurationSource(corsConfigurationSource()))
+		http
+      .cors(cors -> {}) // ativa CORS sem precisar do .and()
+      .csrf(csrf -> csrf.disable()) // desativa CSRF
 		.authorizeHttpRequests(authorize -> authorize
-				.requestMatchers("/cadastro", "/login").permitAll()
-				.anyRequest().authenticated());
+ 				.requestMatchers("/cadastro", "/login").permitAll()
+ 				.anyRequest().authenticated());
+
+
 		
 		//Configuração que é melhor mantermos localmente, pq é uma vulnerabilidade que facilita nossos testes
 		
@@ -66,19 +70,6 @@ public class SecurityConfig {
 		
 	}
 	
-    @Bean
-    public CorsConfigurationSource corsConfigurationSource() {
-        CorsConfiguration corsConfig = new CorsConfiguration();
-        corsConfig.setAllowedOrigins(Arrays.asList("http://localhost:5173"));
-        corsConfig.setAllowedMethods(Arrays.asList("GET", "POST", "PUT", "DELETE", "OPTIONS"));
-        corsConfig.setAllowedHeaders(Arrays.asList("Authorization", "Content-Type"));
-        corsConfig.setAllowCredentials(true);
-
-        UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
-        source.registerCorsConfiguration("/**", corsConfig);
-
-        return source;
-    }
 	
 	//Criando um Decoder a partir da nossa chave pública, é o cara que vai fazer a descriptografia do JWT na requisição
 	@Bean
